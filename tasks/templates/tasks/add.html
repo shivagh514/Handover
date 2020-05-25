@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <style>
+            input[type=text], select {
+              width: 350%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              display: inline-block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+            }
+            
+            input[type=submit] {
+              width: 100%;
+              background-color: #4CAF50;
+              color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+            
+            input[type=submit]:hover {
+              background-color: #45a049;
+            }
+            
+            div {
+              border-radius: 5px;
+              background-color: #f2f2f2;
+              padding: 20px;
+            }
+            table{
+                table-layout: fixed;
+            }
+            td{
+                word-wrap:break-word
+            }
+
+            </style>
+    <head>
+    <body>
+        <div>
+            <h4> Handover Tool <h4>
+            <form method="POST">
+                {% csrf_token %}
+                <table >
+                    <tr> <td>Title </td> <td> {{form.title}}  </td></tr>
+                    <tr> <td>Comment</td> <td style="word-wrap: break-word;" > {{form.comment}} </td></tr>
+                    <tr>
+                        <td>Date</td> 
+                        <td>{{form.created}}</td>
+                    </tr> 
+                    <tr>
+                    <td>Handovered_to</td> 
+                    <td><select name="shifts" id="shifts">
+                            <option value="A-Shift">A-Shift</option>
+                            <option value="B-Shift">B-Shift</option>
+                            <option value="C-Shift">C-Shift</option>
+                        </select>
+                    </td>           
+                    </tr>
+                    <tr>
+                        <td>AssignedBy</td>
+                        <td>{{ form.assignedBy }}</td>
+                    </tr>
+                    <tr>
+                        <td>AssignedTo</td>
+                        <td>{{ form.assignedTo }}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            <select name="status" id="status">
+                                <option value="Assigned">Assigned</option>
+                                <option value="Work In Progress">Work In Progress</option>
+                                <option value="Completedt">Completed</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr><td><input type="submit" name='task-submit'></td></tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

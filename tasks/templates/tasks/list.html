@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <style>
+            #data {
+              font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+              border-collapse: collapse;
+            }
+            
+            #data td, #data th {
+              border: 1px solid #ddd;
+              padding: 8px;
+            }
+            
+            #data tr:nth-child(even){background-color: #f2f2f2;}
+            
+            #data tr:hover {background-color: #ddd;}
+            
+            div {
+              border-radius: 5px;
+              background-color: #f2f2f2;
+              padding: 20px;
+            }
+
+            #data th {
+              padding-top: 12px;
+              padding-bottom: 12px;
+              text-align: left;
+              background-color: #4CAF50;
+              color: white;
+            }
+            
+            </style>
+    <head>
+    <body>
+
+        <div>
+            <h4> Handover Tool</h4>
+            <button type="button"><a href="{% url 'add' %}">Add Items</a></button>
+            <table id="data">
+                <tr>
+                    <th>Date</th>
+                    <th>Handovered TO</th>
+                    <th>Title</th>
+                    <th>Comment</th>
+                    <th>AssignedBy</th>
+                    <th>AssignedTo</th>
+                    <th>Status</th>
+                </tr>
+
+               {% for task in tasks %}
+                    <tr>
+                        <td style="width:100px">{{task.created}}</td>
+                        <td>{{task.shifts}}</td>
+                        <td style="width:350px">{{task.title}}</td>
+                        <td style="width:400px">{{task.comment}}</td>
+                        <td>{{task.assignedBy}}</td>
+                        <td>{{task.assignedTo}}</td>
+                        <td>{{task.status}}</td>
+                        <td><a href="{% url 'updateTask' task.id %}">Update</a></td>
+                        <td><a href="{% url 'delete' task.id %}">Delete</a></td>
+                    </tr>
+
+                {% endfor %} 
+        </table>
+        <script>
+            $(function () {
+              $("#datetimepicker1").datetimepicker();
+            });
+          </script>
+        </div>
+    </body>
+</html>
